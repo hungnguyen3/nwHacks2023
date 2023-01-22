@@ -3,6 +3,7 @@ import { client } from '../src/index';
 export const initTables = async () => {
 	await initUsers();
 	await initDocs();
+	await initComments();
 };
 
 const initUsers = async () => {
@@ -43,5 +44,22 @@ const initDocs = async () => {
       `
 		)
 		.then(() => console.log('successfully created docs table'))
+		.catch((e: any) => console.error(e.stack));
+};
+
+const initComments = async () => {
+	await client
+		.query(
+			`
+        CREATE TABLE IF NOT EXISTS comments (
+          "commentId" SERIAL PRIMARY KEY,
+          "text" varchar(255) NOT NULL,
+          "docId" int NOT NULL,
+
+          FOREIGN KEY ("docId") REFERENCES "docs"("docId") ON DELETE CASCADE 
+        );
+      `
+		)
+		.then(() => console.log('successfully created comments table'))
 		.catch((e: any) => console.error(e.stack));
 };

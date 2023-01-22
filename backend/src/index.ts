@@ -4,6 +4,7 @@ const { Client } = require('pg');
 import { initTables } from '../db/initTable';
 const userRoute = require('../routes/users');
 const docRoute = require('../routes/docs');
+const commentRoute = require('../routes/comments');
 import cors from 'cors';
 require('dotenv').config();
 
@@ -91,6 +92,7 @@ export const client =
 
 	app.use('/users', userRoute);
 	app.use('/docs', docRoute);
+	app.use('/comments', commentRoute);
 
 	app.listen(process.env.PORT || 4000, () => {
 		console.log(`express listening on port ${process.env.PORT || 4000}`);

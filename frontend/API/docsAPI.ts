@@ -67,3 +67,24 @@ export async function deleteDocsByIds(data: { docIds: number[] }) {
 		return { error: 'unknown error' };
 	}
 }
+
+export async function getDocById(docId: number) {
+	try {
+		const response = await fetch(
+			`${process.env.NEXT_PUBLIC_SERVER_URL}/docs/getDocById/${docId}`,
+			{
+				method: 'GET',
+				mode: 'cors',
+				cache: 'no-cache',
+				credentials: 'same-origin',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			}
+		);
+		return response.json();
+	} catch (e) {
+		console.log(e);
+		return { error: 'unknown error' };
+	}
+}
