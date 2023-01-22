@@ -5,9 +5,9 @@ import { useState } from 'react';
 import { DarkModeSwitch } from './DarkModeSwitch';
 
 const Header = () => {
-	const [isJobsOpen, setIsJobsOpen] = useState(false);
-	const { colorMode, toggleColorMode } = useColorMode();
-	const isDark = colorMode === 'dark';
+	// const [isJobsOpen, setIsJobsOpen] = useState(false);
+	// const { colorMode, toggleColorMode } = useColorMode();
+	// const isDark = colorMode === 'dark';
 
 	return (
 		<Flex
@@ -15,49 +15,43 @@ const Header = () => {
 			align="center"
 			justify="space-between"
 			className={styles.header}
-			backgroundColor={isDark ? 'whiteAlpha.50' : 'teal'}
+			backgroundColor={'teal'}
 		>
-			<DarkModeSwitch />
+			{/* <DarkModeSwitch /> */}
 			<WrapItem className={styles.avatarWapper}>
-				<Image
+				<Avatar
 					src="https://drive.google.com/uc?export=download&id=1N7023ZtxnWZcpHtqLtaLCYsm1NKWo95x"
-					alt="Avatar"
-					height={50}
-					width={50}
+					height={70}
+					width={70}
+					ml={7}
 				/>
 			</WrapItem>
 
-			<Box
-				onMouseEnter={() => setIsJobsOpen(true)}
-				onMouseLeave={() => setIsJobsOpen(false)}
-				className={styles.menu}
-			>
-				<Box style={{ fontFamily: 'monospace' }}>
-					<ul>
-						<li>
-							<a href="#">Jobs</a>
-							<ul>
-								<li>
-									<a href="#">job menu 1</a>
-								</li>
-								<li>
-									<a href="#">job menu 2</a>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a href="#">Jobs</a>
-							<ul>
-								<li>
-									<a href="#">job menu 1</a>
-								</li>
-								<li>
-									<a href="#">job menu 2</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</Box>
+			<Box className={styles.menu} style={{ fontFamily: 'monospace' }}>
+				<ul>
+					<li className={styles.jobs}>
+						<a href="#">Jobs</a>
+						<ul>
+							<li>
+								<a href="#">job menu 1</a>
+							</li>
+							<li>
+								<a href="#">job menu 2</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Schools</a>
+						<ul>
+							<li>
+								<a href="#">job menu 1</a>
+							</li>
+							<li>
+								<a href="#">job menu 2</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
 			</Box>
 			<Box />
 		</Flex>
