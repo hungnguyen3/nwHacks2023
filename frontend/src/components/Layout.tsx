@@ -14,9 +14,7 @@ interface LayoutProps {
 }
 
 const Layout = (props: LayoutProps) => {
-	// const [loggedIn, setLoggedIn] = useState<boolean>(false);
 	const loggedIn = useAppSelector((state: RootState) => state.user.loggedIn);
-	// const [loggedIn, setLoggedIn] = useState(false);
 	const dispatch = useAppDispatch();
 	const router = useRouter();
 
@@ -41,8 +39,22 @@ const Layout = (props: LayoutProps) => {
 
 	if (!loggedIn)
 		return (
-			<Center bg="tomato" color="white" width="100%" height="100vh">
-				<VStack>
+			<Center
+				bg="tomato"
+				color="white"
+				width="100%"
+				height="100vh"
+				backgroundImage={
+					'https://drive.google.com/uc?export=download&id=1bdYJVn06i-LdiduRm1ffgZKVa-6R9R8h'
+				}
+				style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
+			>
+				<VStack
+					alignItems="center"
+					justify="flex-start"
+					marginTop="30%"
+					marginRight="-50%"
+				>
 					<div>
 						<h1>Welcome 👋.</h1>
 					</div>

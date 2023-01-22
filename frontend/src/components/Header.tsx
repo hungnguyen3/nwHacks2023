@@ -34,7 +34,7 @@ const Header = () => {
 			align="center"
 			justify="space-between"
 			className={styles.header}
-			backgroundColor={isDark ? 'whiteAlpha.50' : 'teal'}
+			backgroundColor={isDark ? '#DD6B20' : '#FBD38D'}
 		>
 			<DarkModeSwitch />
 			<WrapItem className={styles.avatarWapper}>

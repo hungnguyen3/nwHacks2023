@@ -1,5 +1,4 @@
 import Layout from '../components/Layout';
-import { DarkModeSwitch } from '../components/DarkModeSwitch';
 
 export default function Home() {
 	return (
