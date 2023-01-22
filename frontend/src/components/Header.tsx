@@ -42,16 +42,16 @@ const Header = () => {
 			justify="space-between"
 			className={styles.header}
 			backgroundColor={isDark ? '#BA97B4' : 'tomato'}
-			h="75px"
+			h="60px"
 		>
 			<DarkModeSwitch />
 			<WrapItem className={styles.avatarWapper}>
 				<Link onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}>
 					<Avatar
 						src="https://drive.google.com/uc?export=download&id=1N7023ZtxnWZcpHtqLtaLCYsm1NKWo95x"
-						height={70}
-						width={70}
-						maxHeight={70}
+						height={'55px'}
+						width={'75px'}
+						maxHeight={'60px'}
 						ml={7}
 					/>{' '}
 				</Link>
@@ -59,7 +59,7 @@ const Header = () => {
 					<Button
 						variant="solid"
 						onClick={googleSignOut}
-						marginTop={4}
+						marginTop={'3%'}
 						marginLeft={1}
 					>
 						Looooooog Ooooooout
@@ -72,7 +72,7 @@ const Header = () => {
 			<Box
 				className={styles.menu}
 				style={{ fontFamily: 'monospace' }}
-				paddingRight={70}
+				paddingRight={'20%'}
 			>
 				<Menu autoSelect={false}>
 					<MenuButton as={Button} colorScheme="tomato" m={8}>
@@ -86,6 +86,18 @@ const Header = () => {
 							<NavLink href={'/jobs/documents'}>Job documents</NavLink>
 						</MenuItem>
 					</MenuList>
+				</Menu>
+				<Menu autoSelect={false}>
+					<MenuButton
+						as={Button}
+						color="tomato"
+						m={8}
+						onClick={() => router.push('/')}
+						variant={'solid'}
+						minW="fit-content"
+					>
+						Home
+					</MenuButton>
 				</Menu>
 				<Menu autoSelect={false}>
 					<MenuButton as={Button} colorScheme="tomato" m={8}>
