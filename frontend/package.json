@@ -12,6 +12,7 @@
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.9.0",
     "@reduxjs/toolkit": "^1.9.1",
+    "firebase": "^9.16.0",
     "framer-motion": "^6.3.0",
     "next": "latest",
     "react": "^18.2.0",
