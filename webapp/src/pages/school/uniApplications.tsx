@@ -79,24 +79,31 @@ export default function UniversitySearch() {
 	return (
 		<Box bg={bg} p={4}>
 			<Flex justify="center">
-				<Stack spacing={4}>
-					<Text fontWeight="bold" fontSize="lg">
-						Find your University
-					</Text>
-					<Input
-						placeholder="Search Universities"
-						value={searchTerm}
-						onChange={handleSearch}
-					/>
-					<Select
-						placeholder="Filter by type"
-						value={selectedOption}
-						onChange={handleSelect}
-					>
-						<option value="All">All</option>
-						<option value="Public">Public</option>
-						<option value="Private">Private</option>
-					</Select>
+				<Stack spacing={10}>
+					<Center>
+						<Text fontWeight="bold" style={{ fontSize: '25px' }}>
+							Find your University
+						</Text>
+					</Center>
+					<Center>
+						<Input
+							style={{ fontSize: '25px' }}
+							placeholder="Search Universities"
+							value={searchTerm}
+							onChange={handleSearch}
+						/>
+					</Center>
+					<Center>
+						<Select
+							style={{ fontSize: '20px', width: '100%' }}
+							value={selectedOption}
+							onChange={handleSelect}
+						>
+							<option value="All">All</option>
+							<option value="Public">Public</option>
+							<option value="Private">Private</option>
+						</Select>
+					</Center>
 				</Stack>
 			</Flex>
 			<Center>
