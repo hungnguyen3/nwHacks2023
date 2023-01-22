@@ -1,10 +1,13 @@
 import styles from '../styles/HeaderStyle.module.scss';
-import { Box, Flex, Avatar, WrapItem } from '@chakra-ui/react';
+import { Box, Flex, Avatar, WrapItem, useColorMode } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useState } from 'react';
+import { DarkModeSwitch } from './DarkModeSwitch';
 
 const Header = () => {
 	const [isJobsOpen, setIsJobsOpen] = useState(false);
+	const { colorMode, toggleColorMode } = useColorMode();
+	const isDark = colorMode === 'dark';
 
 	return (
 		<Flex
@@ -12,7 +15,9 @@ const Header = () => {
 			align="center"
 			justify="space-between"
 			className={styles.header}
+			backgroundColor={isDark ? 'whiteAlpha.50' : 'teal'}
 		>
+			<DarkModeSwitch />
 			<WrapItem className={styles.avatarWapper}>
 				<Image
 					src="https://drive.google.com/uc?export=download&id=1N7023ZtxnWZcpHtqLtaLCYsm1NKWo95x"
@@ -27,7 +32,7 @@ const Header = () => {
 				onMouseLeave={() => setIsJobsOpen(false)}
 				className={styles.menu}
 			>
-				<nav>
+				<Box style={{ fontFamily: 'monospace' }}>
 					<ul>
 						<li>
 							<a href="#">Jobs</a>
@@ -52,7 +57,7 @@ const Header = () => {
 							</ul>
 						</li>
 					</ul>
-				</nav>
+				</Box>
 			</Box>
 			<Box />
 		</Flex>
