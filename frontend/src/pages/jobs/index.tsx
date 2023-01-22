@@ -21,7 +21,7 @@ const Jobs = () => {
           <div className={styles.commentTitle}>Comment Section 1</div>
           <div className={styles.list}>
             <ul>
-              <li>Comment 1</li>
+              <li></li>
               <li>Comment 2</li>
               <li>Comment 3</li>
               <li>Comment 4</li>
