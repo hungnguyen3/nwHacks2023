@@ -119,17 +119,13 @@ export default function UniversitySearch() {
 					</Stack>
 				</Flex>
 				<Center>
-					<HStack spacing={100} justify="center" display={'flex'}>
+					<HStack spacing={100} justify="center" overflow="auto">
 						{filteredUniversities.map(university => (
-							<Box key={university.id} boxSize="100px">
+							<Box key={university.id}>
 								<Text>{university.name}</Text>
 								<Text>{university.type}</Text>
 								<Box boxSize="sm" alignItems={'center'}>
-									<Image
-										boxSize="100px"
-										src={university.photoUrl}
-										alt={university.name}
-									/>
+									<Image src={university.photoUrl} alt={university.name} />
 								</Box>
 							</Box>
 						))}
