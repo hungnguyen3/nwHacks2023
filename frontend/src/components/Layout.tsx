@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import styles from '../styles/LayoutStyle.module.scss';
 import Header from './Header';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { RootState } from '../../store';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { googleSignInPopUp } from './FirebaseInit';
+import { googleSignInPopUp, googleSignOut } from './FirebaseInit';
 import { Center, VStack } from '@chakra-ui/react';
-import { logIn, UserAuth } from '../../slices/UserSlice';
+import { logIn, logOut, UserAuth } from '../../slices/UserSlice';
+import { useRouter } from 'next/router';
 
 interface LayoutProps {
 	children: (JSX.Element | null)[] | JSX.Element;
@@ -14,24 +14,30 @@ interface LayoutProps {
 
 const Layout = (props: LayoutProps) => {
 	// const [loggedIn, setLoggedIn] = useState<boolean>(false);
-	const loggedIn = useAppSelector((state: RootState) => state.user.loggedIn);
+	// const loggedIn = useAppSelector((state: RootState) => state.user.loggedIn);
+	const [loggedIn, setLoggedIn] = useState(false);
 	const dispatch = useAppDispatch();
+	const router = useRouter();
 
 	const auth = getAuth();
 	useEffect(() => {
 		onAuthStateChanged(auth, user => {
 			if (user) {
 				console.log(user);
+
 				const userAuth: UserAuth = {
 					email: user.email,
-					userId: Number(user.uid),
+					userDatabaseId: 7777777,
+					userFirebaseId: user.uid,
 					userName: user.displayName,
 					userProfileImageUrl: user.photoURL,
 				};
-				dispatch(logIn());
+				dispatch(logIn(userAuth));
+				setLoggedIn(true);
 			} else {
-				// User is signed out
-				// ...
+				dispatch(logOut());
+				setLoggedIn(false);
+				router.push('/');
 			}
 		});
 	}, [loggedIn]);

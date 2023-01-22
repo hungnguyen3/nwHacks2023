@@ -1,3 +1,4 @@
+import { CloseIcon } from '@chakra-ui/icons';
 import styles from '../styles/HeaderStyle.module.scss';
 import {
 	Box,
@@ -18,6 +19,7 @@ import { DarkModeSwitch } from './DarkModeSwitch';
 import { useAppDispatch } from '../../hooks';
 import { logOut } from '../../slices/UserSlice';
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { googleSignOut } from './FirebaseInit';
 
 const Header = () => {
 	const [isJobsOpen, setIsJobsOpen] = useState(false);
@@ -47,20 +49,14 @@ const Header = () => {
 				</a>
 				{isUserMenuOpen ? (
 					<Menu>
-						<MenuButton
-							as={IconButton}
-							aria-label="Options"
-							icon={<HamburgerIcon />}
-							variant="outline"
-						/>
-						<MenuList>
-							<MenuItem
-								onClick={() => dispatch(logOut())}
-								className={styles.signOut}
-							>
-								Sign Out
-							</MenuItem>
-						</MenuList>
+						<Button
+							variant="solid"
+							onClick={googleSignOut}
+							marginTop={1}
+							marginLeft={1}
+						>
+							Looooooog Ooooooout
+						</Button>
 					</Menu>
 				) : (
 					<div></div>

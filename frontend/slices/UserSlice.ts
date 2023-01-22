@@ -12,7 +12,8 @@ const initialState: UserState = {
 
 export interface UserAuth {
 	email: string;
-	userId: number;
+	userFirebaseId: string;
+	userDatabaseId: number;
 	userName: string;
 	userProfileImageUrl: string;
 }
