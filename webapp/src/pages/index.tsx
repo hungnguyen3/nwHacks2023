@@ -1,10 +1,11 @@
-import styles from '../styles/test.module.scss';
-import { Counter } from '@/components/Counter';
+import Layout from '@/components/Layout';
 
 export default function Home() {
 	return (
-		<div>
-			<Counter />
-		</div>
+		<Layout>
+			<div>empty rn.</div>
+			<div>empty rn.</div>
+			<div>empty rn.</div>
+		</Layout>
 	);
 }

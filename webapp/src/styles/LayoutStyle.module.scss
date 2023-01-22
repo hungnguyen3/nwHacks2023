@@ -1,0 +1,14 @@
+.background {
+    background: rgb(255, 255, 255);
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    .contentContainer {
+        background-color: rgb(176, 46, 46);
+    }
+}
