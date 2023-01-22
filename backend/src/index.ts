@@ -9,25 +9,42 @@ require('dotenv').config();
 
 const admin = require('firebase-admin');
 
+// admin.initializeApp({
+// 	credential: admin.credential.cert({
+// 		type: process.env.FIREBASE_TYPE,
+// 		project_id: process.env.FIREBASE_PROJECT_ID,
+// 		private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
+// 		private_key: process.env.FIREBASE_PRIVATE_KEY,
+// 		client_email: process.env.FIREBASE_CLIENT_EMAIL,
+// 		client_id: process.env.FIREBASE_CLIENT_ID,
+// 		auth_uri: process.env.FIREBASE_AUTH_URI,
+// 		token_uri: process.env.FIREBASE_TOKEN_URI,
+// 		auth_provider_x509_cert_url: process.env.FIREBASE_AUTH_PROVIDER,
+// 		client_x509_cert_url: process.env.FIREBASE_CLIENT_CERT,
+// 	}),
+// });
+
+// const firebase_private_key_b64 = Buffer.from(
+// 	process.env.FIREBASE_PRIVATE_KEY!,
+// 	'base64'
+// );
+// const firebase_private_key = firebase_private_key_b64.toString('utf8');
+
 admin.initializeApp({
 	credential: admin.credential.cert({
-		type: process.env.FIREBASE_TYPE,
 		project_id: process.env.FIREBASE_PROJECT_ID,
-		private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
-		private_key: process.env.FIREBASE_PRIVATE_KEY,
+		private_key: process.env.FIREBASE_PRIVATE_KEY!.replace(/\\n/g, '\n'),
 		client_email: process.env.FIREBASE_CLIENT_EMAIL,
-		client_id: process.env.FIREBASE_CLIENT_ID,
-		auth_uri: process.env.FIREBASE_AUTH_URI,
-		token_uri: process.env.FIREBASE_TOKEN_URI,
-		auth_provider_x509_cert_url: process.env.FIREBASE_AUTH_PROVIDER,
-		client_x509_cert_url: process.env.FIREBASE_CLIENT_CERT,
 	}),
 });
 
 export const firebaseStorage = admin.storage();
 
 export const client = new Client({
-	connectionString: process.env.PG_CONNECTION_URL,
+	connectionString: process.env.DATABASE_URL,
+	ssl: {
+		rejectUnauthorized: false,
+	},
 });
 
 (async () => {
@@ -70,7 +87,7 @@ export const client = new Client({
 	app.use('/users', userRoute);
 	app.use('/docs', docRoute);
 
-	app.listen(4000, () => {
-		console.log('server running on port 4000');
+	app.listen(process.env.PORT || 4000, () => {
+		console.log(`express listening on port ${process.env.PORT || 4000}`);
 	});
 })();
