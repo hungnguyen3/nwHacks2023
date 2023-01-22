@@ -1,5 +1,6 @@
 import styles from '../styles/HeaderStyle.module.scss';
 import { Box, Flex, Avatar, WrapItem } from '@chakra-ui/react';
+import Image from 'next/image';
 import { useState } from 'react';
 
 const Header = () => {
@@ -13,20 +14,46 @@ const Header = () => {
 			justify="space-between"
 			className={styles.header}
 		>
-			<WrapItem>
-				<Avatar
-					size="md"
-					className={styles.avatar}
+			<WrapItem className={styles.avatarWapper}>
+				<Image
 					src="https://drive.google.com/uc?export=download&id=1N7023ZtxnWZcpHtqLtaLCYsm1NKWo95x"
+					alt="Avatar"
+					height={50}
+					width={50}
 				/>
 			</WrapItem>
+
 			<Box
 				onMouseEnter={() => setIsJobsOpen(true)}
 				onMouseLeave={() => setIsJobsOpen(false)}
-				className={styles.jobs}
+				className={styles.menu}
 			>
-				Jobs
-				{isJobsOpen && <Box>Dropdown List</Box>}
+				<nav>
+					<ul>
+						<li>
+							<a href="#">Jobs</a>
+							<ul>
+								<li>
+									<a href="#">job menu 1</a>
+								</li>
+								<li>
+									<a href="#">job menu 2</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">Jobs</a>
+							<ul>
+								<li>
+									<a href="#">job menu 1</a>
+								</li>
+								<li>
+									<a href="#">job menu 2</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
 			</Box>
 			<Box
 				onMouseEnter={() => setIsSchoolsOpen(true)}
