@@ -4,10 +4,12 @@ import Header from './Header';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { googleSignInPopUp, googleSignOut } from './FirebaseInit';
-import { Center, VStack } from '@chakra-ui/react';
+import { Box, Center, VStack } from '@chakra-ui/react';
 import { logIn, logOut, UserAuth } from '../../slices/UserSlice';
 import { useRouter } from 'next/router';
 import { RootState } from '../../store';
+import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
+import ReactMarkdown from 'react-markdown';
 
 interface LayoutProps {
 	children: (JSX.Element | null)[] | JSX.Element;
@@ -17,8 +19,8 @@ const Layout = (props: LayoutProps) => {
 	const loggedIn = useAppSelector((state: RootState) => state.user.loggedIn);
 	const dispatch = useAppDispatch();
 	const router = useRouter();
-
 	const auth = getAuth();
+
 	useEffect(() => {
 		onAuthStateChanged(auth, user => {
 			if (user) {

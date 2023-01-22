@@ -1,4 +1,3 @@
-import { CloseIcon } from '@chakra-ui/icons';
 import styles from '../styles/HeaderStyle.module.scss';
 import {
 	Box,
@@ -17,13 +16,14 @@ import {
 	Select,
 	MenuDivider,
 	Text,
+	VStack,
+	Center,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { useState } from 'react';
 import { DarkModeSwitch } from './DarkModeSwitch';
 import { useAppDispatch } from '../../hooks';
 import { logOut } from '../../slices/UserSlice';
-import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { googleSignOut } from './FirebaseInit';
 import { useRouter } from 'next/router';
 
@@ -41,24 +41,25 @@ const Header = () => {
 			align="center"
 			justify="space-between"
 			className={styles.header}
-			backgroundColor={isDark ? '#DD6B20' : '#FBD38D'}
+			backgroundColor={isDark ? '#BA97B4' : 'tomato'}
+			h="75px"
 		>
 			<DarkModeSwitch />
 			<WrapItem className={styles.avatarWapper}>
-				<a href="#" onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}>
+				<Link onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}>
 					<Avatar
 						src="https://drive.google.com/uc?export=download&id=1N7023ZtxnWZcpHtqLtaLCYsm1NKWo95x"
-						height={50}
-						width={50}
-						maxHeight={50}
-						ml={5}
+						height={70}
+						width={70}
+						maxHeight={70}
+						ml={7}
 					/>{' '}
-				</a>
+				</Link>
 				{isUserMenuOpen ? (
 					<Button
 						variant="solid"
 						onClick={googleSignOut}
-						marginTop={1}
+						marginTop={4}
 						marginLeft={1}
 					>
 						Looooooog Ooooooout
@@ -74,7 +75,7 @@ const Header = () => {
 				paddingRight={70}
 			>
 				<Menu autoSelect={false}>
-					<MenuButton as={Button} colorScheme="pink" m={8}>
+					<MenuButton as={Button} colorScheme="tomato" m={8}>
 						Jobs
 					</MenuButton>
 					<MenuList>
@@ -87,7 +88,7 @@ const Header = () => {
 					</MenuList>
 				</Menu>
 				<Menu autoSelect={false}>
-					<MenuButton as={Button} colorScheme="pink" m={8}>
+					<MenuButton as={Button} colorScheme="tomato" m={8}>
 						School
 					</MenuButton>
 					<MenuList>
