@@ -14,20 +14,22 @@
 	}
 
 	.menu {
-		cursor: pointer;
-		text-align: center;
+		display: flex;
+        align-items: center;
+        justify-content: center;
+		width: 50%;
+
+
 		a {
 			text-decoration: none;
-		}
-
-		nav {
-			font-family: monospace;
 		}
 
 		ul {
 			list-style: none;
 			margin: 0;
-			padding-left: 0;
+			padding: 0;
+			display: flex;
+            justify-content: space-between;
 		}
 
 		li {
@@ -38,6 +40,7 @@
 			position: relative;
 			text-decoration: none;
 			transition-duration: 0.5s;
+			margin-right: 3rem;
 		}
 
 		li a {
@@ -67,13 +70,11 @@
 		}
 
 		ul li ul li {
-			clear: both;
+			// clear: both;
 			width: 100%;
+			&:hover {
+				color: antiquewhite;
+			}
 		}
-	}
-
-	.schools {
-		cursor: pointer;
-		text-align: center;
 	}
 }
