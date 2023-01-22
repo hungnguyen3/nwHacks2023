@@ -11,6 +11,7 @@ import {
 	Center,
 } from '@chakra-ui/react';
 import { useState } from 'react';
+import Layout from '../../components/Layout';
 
 interface University {
 	id: number;
@@ -77,52 +78,54 @@ export default function UniversitySearch() {
 	});
 
 	return (
-		<Box bg={bg} p={4}>
-			<Flex justify="center">
-				<Stack spacing={10}>
-					<Center>
-						<Text fontWeight="bold" style={{ fontSize: '25px' }}>
-							Find your University
-						</Text>
-					</Center>
-					<Center>
-						<Input
-							style={{ fontSize: '25px' }}
-							placeholder="Search Universities"
-							value={searchTerm}
-							onChange={handleSearch}
-						/>
-					</Center>
-					<Center>
-						<Select
-							style={{ fontSize: '20px', width: '100%' }}
-							value={selectedOption}
-							onChange={handleSelect}
-						>
-							<option value="All">All</option>
-							<option value="Public">Public</option>
-							<option value="Private">Private</option>
-						</Select>
-					</Center>
-				</Stack>
-			</Flex>
-			<Center>
-				<HStack spacing={100}>
-					{filteredUniversities.map(university => (
-						<Box key={university.id}>
-							<Text>{university.name}</Text>
-							<Text>{university.type}</Text>
-							<Box boxSize="sm">
-								<Image
-									boxSize="200px"
-									src={university.photoUrl}
-									alt={university.name}
-								/>
+		<Layout>
+			<Box bg={bg} p={4}>
+				<Flex justify="center">
+					<Stack spacing={10}>
+						<Center>
+							<Text fontWeight="bold" style={{ fontSize: '25px' }}>
+								Find your University
+							</Text>
+						</Center>
+						<Center>
+							<Input
+								style={{ fontSize: '25px' }}
+								placeholder="Search Universities"
+								value={searchTerm}
+								onChange={handleSearch}
+							/>
+						</Center>
+						<Center>
+							<Select
+								style={{ fontSize: '20px', width: '100%' }}
+								value={selectedOption}
+								onChange={handleSelect}
+							>
+								<option value="All">All</option>
+								<option value="Public">Public</option>
+								<option value="Private">Private</option>
+							</Select>
+						</Center>
+					</Stack>
+				</Flex>
+				<Center>
+					<HStack spacing={100}>
+						{filteredUniversities.map(university => (
+							<Box key={university.id}>
+								<Text>{university.name}</Text>
+								<Text>{university.type}</Text>
+								<Box boxSize="sm">
+									<Image
+										boxSize="200px"
+										src={university.photoUrl}
+										alt={university.name}
+									/>
+								</Box>
 							</Box>
-						</Box>
-					))}
-				</HStack>
-			</Center>
-		</Box>
+						))}
+					</HStack>
+				</Center>
+			</Box>
+		</Layout>
 	);
 }

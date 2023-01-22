@@ -5,6 +5,7 @@
 	display: flex;
 	flex-grow: 1;
 	justify-content: space-between;
+
 	.avatarWapper {
 		position: relative;
 		display: block;
@@ -40,7 +41,7 @@
 			position: relative;
 			text-decoration: none;
 			transition-duration: 0.5s;
-			margin-right: 3rem;
+			margin-right: 5rem;
 		}
 
 		li a {
