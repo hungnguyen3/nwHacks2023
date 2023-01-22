@@ -13,6 +13,7 @@ export const Counter = () => {
 		<div>
 			<button onClick={() => dispatch(increment())}>increment</button>
 			<span>{count}</span>
+			<button onClick={() => dispatch(decrement())}>increment</button>
 		</div>
 	);
 };
