@@ -1,24 +1,11 @@
-.background {
-	background: rgb(255, 255, 255);
-	position: absolute;
-	align-items: center;
-	justify-content: center;
-	overflow: hidden;
+.pageContainer {
 	width: 100%;
-	height: 100%;
 	display: flex;
 	flex-direction: column;
-
-	.pageContainer {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
+	flex-grow: 1;
+	.contentContainer {
+		height: 95%;
 		flex-grow: 1;
-		.contentContainer {
-			height: 90%;
-			background-color: #ffffff;
-			flex-grow: 1;
-			margin: 7%;
-		}
+		margin: 7%;
 	}
 }

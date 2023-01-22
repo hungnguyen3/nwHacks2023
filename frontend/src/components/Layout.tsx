@@ -7,9 +7,6 @@ interface LayoutProps {
 
 const Layout = (props: LayoutProps) => {
 	return (
-		// <div className={styles.background}>
-		// 	<div className={styles.contentContainer}>{props.children}</div>
-		// </div>
 		<div className={styles.background}>
 			<div className={styles.pageContainer}>
 				<Header />
