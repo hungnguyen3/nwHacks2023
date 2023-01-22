@@ -9,9 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.4.9",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@next/font": "13.1.4",
     "@reduxjs/toolkit": "^1.9.1",
     "@types/react-redux": "^7.1.25",
+    "framer-motion": "^8.5.0",
     "next": "13.1.4",
     "next-redux-wrapper": "^8.1.0",
     "node-sass": "^8.0.0",
