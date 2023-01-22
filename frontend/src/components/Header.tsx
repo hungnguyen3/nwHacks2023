@@ -12,14 +12,20 @@ import {
 	MenuList,
 	MenuItem,
 	HStack,
+	Link,
 	IconButton,
+	Select,
+	MenuDivider,
+	Text,
 } from '@chakra-ui/react';
+import NextLink from 'next/link';
 import { useState } from 'react';
 import { DarkModeSwitch } from './DarkModeSwitch';
 import { useAppDispatch } from '../../hooks';
 import { logOut } from '../../slices/UserSlice';
 import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { googleSignOut } from './FirebaseInit';
+import { useRouter } from 'next/router';
 
 const Header = () => {
 	const [isJobsOpen, setIsJobsOpen] = useState(false);
@@ -27,6 +33,7 @@ const Header = () => {
 	const isDark = colorMode === 'dark';
 	const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 	const dispatch = useAppDispatch();
+	const router = useRouter();
 
 	return (
 		<Flex
@@ -66,33 +73,57 @@ const Header = () => {
 				style={{ fontFamily: 'monospace' }}
 				paddingRight={70}
 			>
-				<ul>
-					<li>
-						<a href="/">Jobs</a>
-						<ul>
-							<li>
-								<a href="/jobs">Roast Piazza</a>
-							</li>
-							<li>
-								<a href="#">job menu 2</a>
-							</li>
-						</ul>
-					</li>
-					<li>
-						<a href="/">Schools</a>
-						<ul>
-							<li>
-								<a href="/school/Application">Application Info</a>
-							</li>
-							<li>
-								<a href="/school/uniApplications">University Applications</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
+				<Menu autoSelect={false}>
+					<MenuButton as={Button} colorScheme="pink" m={8}>
+						Jobs
+					</MenuButton>
+					<MenuList>
+						<MenuItem onClick={() => router.push('/jobs')}>
+							<NavLink href={'/jobs'}>Roast Piazza</NavLink>
+						</MenuItem>
+						<MenuItem onClick={() => router.push('/#')}>
+							<NavLink href={'/#'}>job menu 2</NavLink>
+						</MenuItem>
+					</MenuList>
+				</Menu>
+				<Menu autoSelect={false}>
+					<MenuButton as={Button} colorScheme="pink" m={8}>
+						School
+					</MenuButton>
+					<MenuList>
+						<MenuItem onClick={() => router.push('/school/Application')}>
+							<NavLink href={'/school/Application'}>Application Info</NavLink>
+						</MenuItem>
+						<MenuItem onClick={() => router.push('/school/uniApplications')}>
+							<NavLink href={'/school/uniApplications'}>
+								University Applications
+							</NavLink>
+						</MenuItem>
+					</MenuList>
+				</Menu>
 			</Box>
 			<Box />
 		</Flex>
+	);
+};
+interface NavLinkProps {
+	href: string;
+	children: any;
+}
+
+const NavLink: React.FC<NavLinkProps> = (props): JSX.Element => {
+	return (
+		<NextLink href={props.href} passHref>
+			<Link
+				bg={undefined}
+				color={undefined}
+				p={2}
+				borderRadius="md"
+				boxShadow={'lg'}
+			>
+				{props.children}
+			</Link>
+		</NextLink>
 	);
 };
 
