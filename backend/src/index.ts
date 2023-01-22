@@ -87,7 +87,7 @@ export const client = new Client({
 	app.use('/users', userRoute);
 	app.use('/docs', docRoute);
 
-	app.listen(4000, () => {
-		console.log('server running on port 4000');
+	app.listen(process.env.PORT || 4000, () => {
+		console.log(`express listening on port ${process.env.PORT || 4000}`);
 	});
 })();
