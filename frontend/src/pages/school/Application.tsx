@@ -1,4 +1,11 @@
-import { Box, Button, ButtonGroup, Center, Text } from '@chakra-ui/react';
+import {
+	Box,
+	Button,
+	ButtonGroup,
+	Center,
+	Text,
+	IconButton,
+} from '@chakra-ui/react';
 
 export default function Application() {
 	var hung = 1;
@@ -6,13 +13,13 @@ export default function Application() {
 
 	return (
 		<Box>
-			<Button colorScheme="blue">Button</Button>;
+			<Button colorScheme="teal">Button</Button>
 			<div />
 			<Center>
 				<Text style={{ fontSize: '25px' }}>UBC Application</Text>
 			</Center>
-			<Button colorScheme="blue">Button</Button>;
-			<div />;
+			<Button colorScheme="teal">Button</Button>
+			<div />
 		</Box>
 	);
 }
