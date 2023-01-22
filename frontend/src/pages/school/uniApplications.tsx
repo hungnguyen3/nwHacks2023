@@ -79,7 +79,17 @@ export default function UniversitySearch() {
 
 	return (
 		<Layout>
-			<Box bg={bg} p={4}>
+			<Box
+				bg={bg}
+				p={4}
+				display="flow"
+				ml={'5%'}
+				mt={'3%'}
+				width="95vw"
+				height="85vh"
+				alignItems="center top"
+				justifyContent="center"
+			>
 				<Flex justify="center">
 					<Stack spacing={10}>
 						<Center>
@@ -109,14 +119,14 @@ export default function UniversitySearch() {
 					</Stack>
 				</Flex>
 				<Center>
-					<HStack spacing={100}>
+					<HStack spacing={100} justify="center" display={'flex'}>
 						{filteredUniversities.map(university => (
-							<Box key={university.id}>
+							<Box key={university.id} boxSize="100px">
 								<Text>{university.name}</Text>
 								<Text>{university.type}</Text>
-								<Box boxSize="sm">
+								<Box boxSize="sm" alignItems={'center'}>
 									<Image
-										boxSize="200px"
+										boxSize="100px"
 										src={university.photoUrl}
 										alt={university.name}
 									/>
