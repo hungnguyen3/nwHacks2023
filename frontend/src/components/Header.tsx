@@ -48,16 +48,14 @@ const Header = () => {
 					/>{' '}
 				</a>
 				{isUserMenuOpen ? (
-					<Menu>
-						<Button
-							variant="solid"
-							onClick={googleSignOut}
-							marginTop={1}
-							marginLeft={1}
-						>
-							Looooooog Ooooooout
-						</Button>
-					</Menu>
+					<Button
+						variant="solid"
+						onClick={googleSignOut}
+						marginTop={1}
+						marginLeft={1}
+					>
+						Looooooog Ooooooout
+					</Button>
 				) : (
 					<div></div>
 				)}

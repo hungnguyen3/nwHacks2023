@@ -7,6 +7,7 @@ import { googleSignInPopUp, googleSignOut } from './FirebaseInit';
 import { Center, VStack } from '@chakra-ui/react';
 import { logIn, logOut, UserAuth } from '../../slices/UserSlice';
 import { useRouter } from 'next/router';
+import { RootState } from '../../store';
 
 interface LayoutProps {
 	children: (JSX.Element | null)[] | JSX.Element;
@@ -14,8 +15,8 @@ interface LayoutProps {
 
 const Layout = (props: LayoutProps) => {
 	// const [loggedIn, setLoggedIn] = useState<boolean>(false);
-	// const loggedIn = useAppSelector((state: RootState) => state.user.loggedIn);
-	const [loggedIn, setLoggedIn] = useState(false);
+	const loggedIn = useAppSelector((state: RootState) => state.user.loggedIn);
+	// const [loggedIn, setLoggedIn] = useState(false);
 	const dispatch = useAppDispatch();
 	const router = useRouter();
 
@@ -23,8 +24,6 @@ const Layout = (props: LayoutProps) => {
 	useEffect(() => {
 		onAuthStateChanged(auth, user => {
 			if (user) {
-				console.log(user);
-
 				const userAuth: UserAuth = {
 					email: user.email,
 					userDatabaseId: 7777777,
@@ -33,10 +32,8 @@ const Layout = (props: LayoutProps) => {
 					userProfileImageUrl: user.photoURL,
 				};
 				dispatch(logIn(userAuth));
-				setLoggedIn(true);
 			} else {
 				dispatch(logOut());
-				setLoggedIn(false);
 				router.push('/');
 			}
 		});
