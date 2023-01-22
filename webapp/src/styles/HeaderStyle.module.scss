@@ -1,0 +1,17 @@
+.header {
+    width: 100%;
+    padding: 7px;
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    background-color: aquamarine;
+
+    .avatar {
+        border-radius: 50%;
+    }
+
+    .jobs, .schools {
+        cursor: pointer;
+        text-align: center;
+    }
+}
