@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import Layout from '../components/Layout';
 
 export default function Home() {
-	let markdown: string = `# Resume Roaster 🔥📝
+	let markdown: string = `# Resume Roaster 🔥📝 
 	\n##### The ultimate platform for showcasing your professional skills and receiving constructive feedback from your peers.
 	\n#### Our app lets you:
 	\n- Share your resume with the community 📝
@@ -41,6 +41,7 @@ export default function Home() {
 					overflow={'auto'}
 					m={7}
 				>
+					<img src="https://drive.google.com/uc?export=download&id=1bdYJVn06i-LdiduRm1ffgZKVa-6R9R8h" />
 					<ReactMarkdown
 						components={ChakraUIRenderer()}
 						children={markdown}
