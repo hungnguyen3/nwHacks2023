@@ -5,9 +5,11 @@
 	flex-direction: column;
 	flex-grow: 1;
 	.contentContainer {
-		height: 90%;
+		height: 100%;
 		flex-grow: 1;
-		margin: 7%;
+		margin-left: 5%;
+		margin-right: 5%;
+		margin-bottom: 5%;
 	}
 }
 

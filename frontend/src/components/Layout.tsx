@@ -5,11 +5,15 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { googleSignInPopUp, googleSignOut } from './FirebaseInit';
 import { Box, Center, VStack } from '@chakra-ui/react';
-import { logIn, logOut, UserAuth } from '../../slices/UserSlice';
+import {
+	logIn,
+	logOut,
+	populateUserDbId,
+	UserAuth,
+} from '../../slices/UserSlice';
 import { useRouter } from 'next/router';
 import { RootState } from '../../store';
-import ChakraUIRenderer from 'chakra-ui-markdown-renderer';
-import ReactMarkdown from 'react-markdown';
+import { getUserByFirebaseAuthId } from '../../API/usersAPI';
 
 interface LayoutProps {
 	children: (JSX.Element | null)[] | JSX.Element;
@@ -19,25 +23,50 @@ const Layout = (props: LayoutProps) => {
 	const loggedIn = useAppSelector((state: RootState) => state.user.loggedIn);
 	const dispatch = useAppDispatch();
 	const router = useRouter();
+	const hasAnAccount = useAppSelector((state: RootState) =>
+		state.user.userDbId !== 0 ? true : false
+	);
+	function timeout(delay: number) {
+		return new Promise(res => setTimeout(res, delay));
+	}
+
 	const auth = getAuth();
 
 	useEffect(() => {
-		onAuthStateChanged(auth, user => {
+		onAuthStateChanged(auth, async user => {
 			if (user) {
 				const userAuth: UserAuth = {
 					email: user.email,
-					userDatabaseId: 7777777,
 					userFirebaseId: user.uid,
 					userName: user.displayName,
 					userProfileImageUrl: user.photoURL,
 				};
-				dispatch(logIn(userAuth));
+
+				if (!hasAnAccount)
+					try {
+						await timeout(3000).then(async () => {
+							const dataBaseUser = await getUserByFirebaseAuthId(
+								userAuth.userFirebaseId
+							);
+							if (!dataBaseUser.error) {
+								console.log(dataBaseUser);
+								dispatch(populateUserDbId(dataBaseUser.data.userId));
+								dispatch(logIn(userAuth));
+							} else {
+								dispatch(logOut());
+								router.push('/');
+							}
+						});
+					} catch (e) {
+						dispatch(logOut());
+						router.push('/');
+					}
 			} else {
 				dispatch(logOut());
 				router.push('/');
 			}
 		});
-	}, [loggedIn]);
+	}, [loggedIn, hasAnAccount]);
 
 	if (!loggedIn)
 		return (

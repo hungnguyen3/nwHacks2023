@@ -1,38 +1,36 @@
 .container {
-  // display: flex;
-  // justify-content: space-between;
-  // align-items: center;
-  width: 90%;
-  height: 700px; // avoid random vertical space between rows of cards
-  display: flex;
-  flex-wrap: wrap;
-  grid-template-columns: 1fr;
-  align-items: flex-start; // Added this line
+	// display: flex;
+	width: 90%;
+	height: 700px; // avoid random vertical space between rows of cards
+	display: flex;
+	flex-wrap: wrap;
+	grid-template-columns: 1fr;
+	align-items: flex-start; // Added this line
 }
 
 .squareBox {
-  // margin-left: 100px;
-  // width: 45%;
-  // height: 200px;
-  // border: 1 px solid black;
-  // margin-top: 20px;
-  // position: relative;
-  margin: 17px;
-  width: 1000px;
-  height: 1000px;
-  border-radius: 40px;
-  box-shadow: 5px 5px 30px 7px #dce0dd, -5px -5px 30px 7px #dce0dd;
-  cursor: pointer;
-  transition: 0.4s;
+	// margin-left: 100px;
+	// width: 45%;
+	// height: 200px;
+	// border: 1 px solid black;
+	// margin-top: 20px;
+	// position: relative;
+	margin: 17px;
+	width: 700px;
+	height: 700px;
+	border-radius: 40px;
+	box-shadow: 5px 5px 30px 7px #dce0dd, -5px -5px 30px 7px #dce0dd;
+	cursor: pointer;
+	transition: 0.4s;
 }
 
 .resume {
-  text-align: center;
-  margin-top: 20px;
-  padding: 20px;
+	text-align: center;
+	margin-top: 20px;
+	padding: 20px;
 }
 
 .button:hover {
-  background-color: #333;
-  color: #fff;
+	background-color: #333;
+	color: #fff;
 }

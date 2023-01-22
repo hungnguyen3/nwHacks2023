@@ -82,8 +82,8 @@ const Header = () => {
 						<MenuItem onClick={() => router.push('/jobs')}>
 							<NavLink href={'/jobs'}>Roast Piazza</NavLink>
 						</MenuItem>
-						<MenuItem onClick={() => router.push('/#')}>
-							<NavLink href={'/#'}>job menu 2</NavLink>
+						<MenuItem onClick={() => router.push('/jobs/documents')}>
+							<NavLink href={'/jobs/documents'}>Job documents</NavLink>
 						</MenuItem>
 					</MenuList>
 				</Menu>

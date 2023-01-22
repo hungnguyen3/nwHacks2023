@@ -21,6 +21,7 @@
     "react-icons": "^4.7.1",
     "react-markdown": "^8.0.5",
     "react-redux": "^8.0.5",
+    "react-scroll": "^1.8.9",
     "sass": "^1.57.1"
   },
   "devDependencies": {

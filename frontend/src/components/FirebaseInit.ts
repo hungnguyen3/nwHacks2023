@@ -6,6 +6,10 @@ import {
 	signInWithPopup,
 	GoogleAuthProvider,
 } from 'firebase/auth';
+import { getStorage } from 'firebase/storage';
+import { createUser, getUserByFirebaseAuthId } from '../../API/usersAPI';
+import { useAppDispatch } from '../../hooks';
+import { populateUserDbId } from '../../slices/UserSlice';
 
 const firebaseConfig = {
 	apiKey: process.env.NEXT_PUBLIC_APIKEY,
@@ -25,25 +29,41 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
+function timeout(delay: number) {
+	return new Promise(res => setTimeout(res, delay));
+}
+
 export const googleSignInPopUp = () =>
 	signInWithPopup(auth, provider)
-		.then(result => {
+		.then(async result => {
 			// This gives you a Google Access Token. You can use it to access the Google API.
 			const credential = GoogleAuthProvider.credentialFromResult(result);
 			const token = credential.accessToken;
 			// The signed-in user info.
 			const user = result.user;
 			// ...
+			const dataBaseUser = await getUserByFirebaseAuthId(user.uid);
+
+			timeout(3000);
+			if (!dataBaseUser.error) {
+				console.log(dataBaseUser);
+			} else {
+				const create = await createUser({
+					userName: user.displayName,
+					firebaseAuthId: user.uid,
+					profileImgUrl: user.photoURL,
+				});
+
+				if (!create.error) {
+					alert('successfully logged in!');
+				} else {
+					alert('something wrong while creating a user');
+				}
+			}
 		})
 		.catch(error => {
-			// Handle Errors here.
-			const errorCode = error.code;
-			const errorMessage = error.message;
-			// The email of the user's account used.
-			const email = error.customData.email;
-			// The AuthCredential type that was used.
-			const credential = GoogleAuthProvider.credentialFromError(error);
-			// ...
+			console.log(error);
+			alert('something wrong while creating a user');
 		});
 
 export const googleSignOut = () =>
@@ -54,3 +74,5 @@ export const googleSignOut = () =>
 		.catch(error => {
 			// An error happened.
 		});
+
+export const storage = getStorage(app);

@@ -40,12 +40,17 @@ admin.initializeApp({
 
 export const firebaseStorage = admin.storage();
 
-export const client = new Client({
-	connectionString: process.env.DATABASE_URL,
-	ssl: {
-		rejectUnauthorized: false,
-	},
-});
+export const client =
+	(process.env.PROD as string) === 'true'
+		? new Client({
+				connectionString: process.env.DATABASE_URL,
+				ssl: {
+					rejectUnauthorized: false,
+				},
+		  })
+		: new Client({
+				connectionString: process.env.DATABASE_URL,
+		  });
 
 (async () => {
 	const app = express();
