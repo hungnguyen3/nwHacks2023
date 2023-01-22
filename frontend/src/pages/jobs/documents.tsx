@@ -17,7 +17,7 @@ import { RootState } from '../../../store';
 import { ref, getDownloadURL, uploadBytes } from 'firebase/storage';
 import { storage } from '../../components/FirebaseInit';
 
-interface DocDTO {
+export interface DocDTO {
 	docId: number;
 	docUrl: string;
 	docRef: string;
@@ -32,6 +32,7 @@ const Documents = () => {
 	const router = useRouter();
 	const userDbId = useAppSelector((state: RootState) => state.user.userDbId);
 	const [file, setFile] = useState(null);
+	const [counter, setCounter] = useState(1);
 
 	const scrollToBottom = () => {
 		endRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -48,7 +49,7 @@ const Documents = () => {
 			});
 		};
 		fetchOptions();
-	}, []);
+	}, [counter, userDbId]);
 
 	const getRoasted = () => {
 		router.push(`/jobs/${selectedOption.docId}`);
@@ -78,9 +79,12 @@ const Documents = () => {
 						docType: 'resume',
 					});
 
+					console.log(createDocRes);
+
 					if (createDocRes.error) {
 						alert('Something went wrong creating the giffy');
 					} else {
+						setCounter(counter + 1);
 						alert('Upload successfully');
 					}
 				}
@@ -93,7 +97,6 @@ const Documents = () => {
 	};
 
 	const handleOnChange = e => {
-		console.log(e.target.files[0]);
 		setFile(e.target.files[0]);
 	};
 
@@ -120,8 +123,14 @@ const Documents = () => {
 					</Select>
 				</FormControl>
 				<input type="file" accept="application/pdf" onChange={handleOnChange} />
-				<Button onSubmit={handleOnSubmit} color={'orange'} type="submit">
-					Upload File
+				<Button
+					onClick={async () => {
+						await handleOnSubmit();
+					}}
+					color={'orange'}
+					type="submit"
+				>
+					Upload a new PDF
 				</Button>
 			</HStack>
 			<Center>

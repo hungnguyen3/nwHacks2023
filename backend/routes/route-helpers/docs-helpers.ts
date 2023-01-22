@@ -114,3 +114,29 @@ export const getDocsByUserId = async (
 		} as ErrorDTO);
 	}
 };
+export const getDocById = async (
+	req: express.Request,
+	res: express.Response
+) => {
+	try {
+		if (!req.params.docId) {
+			return res.status(400).send({
+				error: 'missing required parameter(s)',
+			});
+		}
+		const docId = req.params.docId;
+		const result = await client.query(`SELECT * FROM docs WHERE "docId" = $1`, [
+			docId,
+		]);
+		if (result.rowCount === 1) {
+			return res.status(200).send({ data: result.rows[0] });
+		} else {
+			return res.status(404).send({ error: 'document not found' });
+		}
+	} catch (err) {
+		console.log(err);
+		return res.status(500).send({
+			error: 'Something went wrong while retrieving document',
+		});
+	}
+};
